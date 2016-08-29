@@ -58,9 +58,9 @@ public class HdfsSinkConnectorConfig extends StorageSinkConnectorConfig {
   // This config is deprecated and will be removed in future releases. Use store.url instead.
   public static final String HDFS_URL_CONFIG = "hdfs.url";
   public static final String HDFS_URL_DOC =
-      "The HDFS connection URL. This configuration has the format of hdfs://hostname:port and "
-          + "specifies the HDFS to export data to. This property is deprecated and will be "
-          + "removed in future releases. Use ``store.url`` instead.";
+          "The MapR-FS connection URL. This configuration has the format of maprfs://[mapr/[cluster_name]]/[path] "
+                  + "For connection to the local cluster use maprfs:/// (cluster_name in this case is the first entry "
+                  + "in /opt/mapr/conf/mapr-clusters.conf).";
   public static final String HDFS_URL_DEFAULT = null;
   public static final String HDFS_URL_DISPLAY = "HDFS URL";
 
@@ -83,20 +83,20 @@ public class HdfsSinkConnectorConfig extends StorageSinkConnectorConfig {
   // Security group
   public static final String HDFS_AUTHENTICATION_KERBEROS_CONFIG = "hdfs.authentication.kerberos";
   private static final String HDFS_AUTHENTICATION_KERBEROS_DOC =
-      "Configuration indicating whether HDFS is using Kerberos for authentication.";
+      "Configuration indicating whether MapR-FS is using Kerberos for authentication.";
   private static final boolean HDFS_AUTHENTICATION_KERBEROS_DEFAULT = false;
   private static final String HDFS_AUTHENTICATION_KERBEROS_DISPLAY = "HDFS Authentication Kerberos";
 
   public static final String CONNECT_HDFS_PRINCIPAL_CONFIG = "connect.hdfs.principal";
   public static final String CONNECT_HDFS_PRINCIPAL_DEFAULT = "";
   private static final String CONNECT_HDFS_PRINCIPAL_DOC =
-      "The principal to use when HDFS is using Kerberos to for authentication.";
+      "The principal to use when MapR-FS is using Kerberos to for authentication.";
   private static final String CONNECT_HDFS_PRINCIPAL_DISPLAY = "Connect Kerberos Principal";
 
   public static final String CONNECT_HDFS_KEYTAB_CONFIG = "connect.hdfs.keytab";
   public static final String CONNECT_HDFS_KEYTAB_DEFAULT = "";
   private static final String CONNECT_HDFS_KEYTAB_DOC =
-      "The path to the keytab file for the HDFS connector principal. "
+      "The path to the keytab file for the MapR-FS connector principal. "
           + "This keytab file should only be readable by the connector user.";
   private static final String CONNECT_HDFS_KEYTAB_DISPLAY = "Connect Kerberos Keytab";
 

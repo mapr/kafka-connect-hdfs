@@ -62,7 +62,14 @@
         <repository>
             <id>confluent</id>
             <name>Confluent</name>
-            <url>${confluent.maven.repo}</url>
+            <url>http://packages.confluent.io/maven/</url>
+        </repository>
+        <!-- MapR repository -->
+        <repository>
+            <id>mapr-releases</id>
+            <url>http://repository.mapr.com/nexus/content/repositories/releases</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
         </repository>
     </repositories>
 
@@ -284,6 +291,21 @@
                         <configuration>
                             <descriptors>
                                 <descriptor>src/assembly/standalone.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>binary</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/bin.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </plugin>

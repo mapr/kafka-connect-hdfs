@@ -138,7 +138,9 @@ public class FSWAL implements WAL {
   public void truncate() throws ConnectException {
     try {
       String oldLogFile = logFile + ".1";
-      storage.delete(oldLogFile);
+      if (storage.exists(oldLogFile)) {
+        storage.delete(oldLogFile);
+      }
       storage.commit(logFile, oldLogFile);
     } finally {
       close();
