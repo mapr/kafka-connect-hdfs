@@ -41,11 +41,11 @@ public class FileUtils {
   public static String directoryName(String url, String topicsDir, TopicPartition topicPart) {
     String topic = topicPart.topic();
     int partition = topicPart.partition();
-    return url + "/" + topicsDir + "/" + escape(topic) + "/" + partition;
+    return url + "/" + topicsDir + "/" + StreamsUtil.escapeTopic(topic) + "/" + partition;
   }
 
   public static String directoryName(String url, String topicsDir, String directory) {
-    return url + "/" + topicsDir + "/" + escape(directory);
+    return url + "/" + topicsDir + "/" + directory;
   }
 
   public static String fileName(
@@ -56,20 +56,11 @@ public class FileUtils {
   ) {
     String topic = topicPart.topic();
     int partition = topicPart.partition();
-    return url + "/" + topicsDir + "/" + escape(topic) + "/" + partition + "/" + name;
-  }
-
-  private static String escape(String path) {
-    if (path.startsWith("/") && path.contains(":")) {
-      path = path.substring(1); // remove first slash
-      path = path.replace(':', '-');
-      path = path.replace('/', '_');
-    }
-    return path;
+    return url + "/" + topicsDir + "/" + StreamsUtil.escapeTopic(topic) + "/" + partition + "/" + name;
   }
 
   public static String fileName(String url, String topicsDir, String directory, String name) {
-    return url + "/" + topicsDir + "/" + escape(directory) + "/" + name;
+    return url + "/" + topicsDir + "/" + directory + "/" + name;
   }
 
   public static String tempFileName(
@@ -80,7 +71,7 @@ public class FileUtils {
   ) {
     UUID id = UUID.randomUUID();
     String name = id.toString() + "_" + "tmp" + extension;
-    return fileName(url, topicsDir, escape(directory), name);
+    return fileName(url, topicsDir, directory, name);
   }
 
   public static String committedFileName(
@@ -96,7 +87,7 @@ public class FileUtils {
     String topic = topicPart.topic();
     int partition = topicPart.partition();
     StringBuilder sb = new StringBuilder();
-    sb.append(escape(topic));
+    sb.append(StreamsUtil.escapeTopic(topic));
     sb.append(HdfsSinkConnectorConstants.COMMMITTED_FILENAME_SEPARATOR);
     sb.append(partition);
     sb.append(HdfsSinkConnectorConstants.COMMMITTED_FILENAME_SEPARATOR);
@@ -109,7 +100,7 @@ public class FileUtils {
   }
 
   public static String topicDirectory(String url, String topicsDir, String topic) {
-    return url + "/" + topicsDir + "/" + escape(topic);
+    return url + "/" + topicsDir + "/" + StreamsUtil.escapeTopic(topic);
   }
 
   public static FileStatus fileStatusWithMaxOffset(

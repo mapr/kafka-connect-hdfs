@@ -493,7 +493,7 @@ public class TopicPartitionWriter {
   }
 
   private String getDirectory(String encodedPartition) {
-    return partitioner.generatePartitionedPath(tp.topic(), encodedPartition);
+    return partitioner.generatePartitionedPath(StreamsUtil.escapeTopic(tp.topic()), encodedPartition);
   }
 
   private void nextState() {
@@ -784,7 +784,8 @@ public class TopicPartitionWriter {
       @Override
       public Void call() throws HiveMetaStoreException {
         try {
-          hive.createTable(hiveDatabase, tp.topic(), currentSchema, partitioner);
+            String escapedTableName = StreamsUtil.escapeTopic(tp.topic());
+            hive.createTable(hiveDatabase, escapedTableName, currentSchema, partitioner);
         } catch (Throwable e) {
           log.error("Creating Hive table threw unexpected error", e);
         }
@@ -799,7 +800,8 @@ public class TopicPartitionWriter {
       @Override
       public Void call() throws HiveMetaStoreException {
         try {
-          hive.alterSchema(hiveDatabase, tp.topic(), currentSchema);
+            String escapedTableName = StreamsUtil.escapeTopic(tp.topic());
+            hive.alterSchema(hiveDatabase, escapedTableName, currentSchema);
         } catch (Throwable e) {
           log.error("Altering Hive schema threw unexpected error", e);
         }
@@ -814,7 +816,8 @@ public class TopicPartitionWriter {
       @Override
       public Void call() throws Exception {
         try {
-          hiveMetaStore.addPartition(hiveDatabase, tp.topic(), location);
+            String escapedTableName = StreamsUtil.escapeTopic(tp.topic());
+            hiveMetaStore.addPartition(hiveDatabase, escapedTableName, location);
         } catch (Throwable e) {
           log.error("Adding Hive partition threw unexpected error", e);
         }

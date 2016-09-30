@@ -387,6 +387,7 @@ public class DataWriter {
 
     try {
       for (String topic : topics) {
+        String escapedTableName = StreamsUtil.escapeTopic(topic);
         String topicDir = FileUtils.topicDirectory(url, topicsDir, topic);
         CommittedFileFilter filter = new TopicCommittedFileFilter(topic);
         FileStatus fileStatusWithMaxOffset = FileUtils.fileStatusWithMaxOffset(
@@ -401,14 +402,14 @@ public class DataWriter {
               connectorConfig,
               path
           );
-          hive.createTable(hiveDatabase, topic, latestSchema, partitioner);
-          List<String> partitions = hiveMetaStore.listPartitions(hiveDatabase, topic, (short) -1);
+          hive.createTable(hiveDatabase, escapedTableName, latestSchema, partitioner);
+          List<String> partitions = hiveMetaStore.listPartitions(hiveDatabase, escapedTableName, (short) -1);
           FileStatus[] statuses = FileUtils.getDirectories(storage, new Path(topicDir));
           for (FileStatus status : statuses) {
             String location = status.getPath().toString();
             if (!partitions.contains(location)) {
               String partitionValue = getPartitionValue(location);
-              hiveMetaStore.addPartition(hiveDatabase, topic, partitionValue);
+              hiveMetaStore.addPartition(hiveDatabase, escapedTableName, partitionValue);
             }
           }
         }
