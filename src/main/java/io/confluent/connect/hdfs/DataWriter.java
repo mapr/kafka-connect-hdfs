@@ -455,13 +455,7 @@ public class DataWriter {
     // make sure we apply the WAL, and only reuse the temp file if the starting offset is still
     // valid. For now, we prefer the simpler solution that may result in a bit of wasted effort.
     for (TopicPartition tp : assignment) {
-      try {
-        topicPartitionWriters.get(tp).close();
-      } catch (ConnectException e) {
-        log.error("Error closing writer for {}. Error: {}", tp, e.getMessage());
-      } finally {
         topicPartitionWriters.remove(tp);
-      }
     }
   }
 

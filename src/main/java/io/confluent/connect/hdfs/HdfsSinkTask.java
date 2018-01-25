@@ -129,14 +129,14 @@ public class HdfsSinkTask extends SinkTask {
   }
 
   @Override
-  public void open(Collection<TopicPartition> partitions) {
+  public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
     hdfsWriter.open(partitions);
   }
 
   @Override
-  public void close(Collection<TopicPartition> partitions) {
+  public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
     if (hdfsWriter != null) {
-      hdfsWriter.close();
+        hdfsWriter.close(partitions);
     }
   }
 
