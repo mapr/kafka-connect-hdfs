@@ -50,6 +50,7 @@ public class HdfsSinkTask extends SinkTask {
   @Override
   public void start(Map<String, String> props) {
     Set<TopicPartition> assignment = context.assignment();
+    log.info("###After assigment. Assigment = " + assignment);
     try {
       HdfsSinkConnectorConfig connectorConfig = new HdfsSinkConnectorConfig(props);
       boolean hiveIntegration = connectorConfig.getBoolean(HiveConfig.HIVE_INTEGRATION_CONFIG);
@@ -136,7 +137,7 @@ public class HdfsSinkTask extends SinkTask {
   @Override
   public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
     if (hdfsWriter != null) {
-        hdfsWriter.close(partitions);
+        hdfsWriter.close();
     }
   }
 
