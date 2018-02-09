@@ -39,7 +39,7 @@ public class HdfsSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(HdfsSinkTask.class);
   private DataWriter hdfsWriter;
   private AvroData avroData;
-
+  Collection<TopicPartition> partitions;
   public HdfsSinkTask() {}
 
   @Override
@@ -50,7 +50,6 @@ public class HdfsSinkTask extends SinkTask {
   @Override
   public void start(Map<String, String> props) {
     Set<TopicPartition> assignment = context.assignment();
-    log.info("###After assigment. Assigment = " + assignment);
     try {
       HdfsSinkConnectorConfig connectorConfig = new HdfsSinkConnectorConfig(props);
       boolean hiveIntegration = connectorConfig.getBoolean(HiveConfig.HIVE_INTEGRATION_CONFIG);
@@ -81,6 +80,9 @@ public class HdfsSinkTask extends SinkTask {
       );
       avroData = new AvroData(schemaCacheSize);
       hdfsWriter = new DataWriter(connectorConfig, context, avroData);
+      if (partitions != null) {
+          hdfsWriter.open(partitions);
+      }
       recover(assignment);
       if (hiveIntegration) {
         syncWithHive();
@@ -131,7 +133,12 @@ public class HdfsSinkTask extends SinkTask {
 
   @Override
   public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-    hdfsWriter.open(partitions);
+      if (hdfsWriter == null){
+          this.partitions = partitions;
+      } else {
+          hdfsWriter.open(partitions);
+      }
+
   }
 
   @Override
