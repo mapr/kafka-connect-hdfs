@@ -47,6 +47,8 @@
                 <!--<exclude>io.confluent:common-*</exclude>-->
                 <exclude>org.apache.kafka:connect-api</exclude>
                 <exclude>org.mortbay.jetty:*</exclude>
+                <exclude>org.apache.parquet*1.8.2</exclude>
+                <exclude>org.apache.hive*1.2.1*</exclude>
                 <exclude>com.sun.jersey:*</exclude>
                 <exclude>org.eclipse.jetty.aggregate:jetty-all</exclude>
                 <exclude>com.sun.jersey.contribs:jersey-guice</exclude>

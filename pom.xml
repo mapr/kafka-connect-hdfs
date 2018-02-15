@@ -55,6 +55,7 @@
         <hive.version>2.1.1-mapr-1710</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <hadoop.version>2.7.0-mapr-1607</hadoop.version>
+        <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
     </properties>
@@ -202,6 +203,11 @@
             <groupId>org.apache.hive.hcatalog</groupId>
             <artifactId>hive-hcatalog-core</artifactId>
             <version>${hive.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-hadoop-bundle</artifactId>
+            <version>${parquet.version}</version>
         </dependency>
     </dependencies>
 
