@@ -457,6 +457,7 @@ public class DataWriter {
     for (TopicPartition tp : assignment) {
         topicPartitionWriters.remove(tp);
     }
+    assignment.removeAll(assignment);
   }
 
   public void stop() {
