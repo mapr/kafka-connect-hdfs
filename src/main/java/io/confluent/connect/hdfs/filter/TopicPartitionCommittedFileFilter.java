@@ -34,13 +34,9 @@ public class TopicPartitionCommittedFileFilter extends CommittedFileFilter {
       return false;
     }
     String filename = path.getName();
-    Matcher m = HdfsSinkConnectorConstants.COMMITTED_FILENAME_PATTERN.matcher(filename);
-    // NB: if statement has side effect of enabling group() call
-    if (!m.matches()) {
-      throw new AssertionError("match expected because of CommittedFileFilter");
-    }
-    String topic = m.group(HdfsSinkConnectorConstants.PATTERN_TOPIC_GROUP);
-    int partition = Integer.parseInt(m.group(HdfsSinkConnectorConstants.PATTERN_PARTITION_GROUP));
-    return topic.equals(tp.topic()) && partition == tp.partition();
+    String[] parts = filename.split(HdfsSinkConnectorConstants.COMMMITTED_FILENAME_SEPARATOR_REGEX);
+    String topic = "/".concat(parts[0].replace('_', ':'));
+    int partition = Integer.parseInt(parts[1]);
+    return topic.equals(tp.topic().replaceAll("-", "")) && partition == tp.partition();
   }
 }

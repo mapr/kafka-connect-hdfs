@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 public class HdfsSinkConnectorConstants {
 
   public static final String COMMMITTED_FILENAME_SEPARATOR = "+";
+  public static final String COMMMITTED_FILENAME_SEPARATOR_REGEX = "[\\.|\\+]";
 
   // groups: topic, partition, start offset, end offset, extension
   // Also see legalChars in Topic.scala
