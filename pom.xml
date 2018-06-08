@@ -52,7 +52,7 @@
     </scm>
 
     <properties>
-        <hive.version>2.1.1-mapr-1710</hive.version>
+        <hive.version>2.3.3-mapr</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <hadoop.version>2.7.0-mapr-1607</hadoop.version>
         <parquet.version>1.8.2</parquet.version>
@@ -72,6 +72,17 @@
             <url>http://repository.mapr.com/nexus/content/repositories/releases</url>
             <snapshots><enabled>true</enabled></snapshots>
             <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>repository_cv</id>
+            <name>Private MapR repo for CyberVision</name>
+            <url>http://repository_cv.mapr.com/nexus/content/groups/mapr-public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
