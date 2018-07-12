@@ -54,7 +54,7 @@
     <properties>
         <hive.version>2.3.3-mapr</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
-        <hadoop.version>2.7.0-mapr-1607</hadoop.version>
+        <hadoop.version>2.7.0-mapr-1710</hadoop.version>
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
@@ -132,6 +132,12 @@
             <groupId>io.confluent</groupId>
             <artifactId>kafka-connect-storage-format</artifactId>
             <version>${confluent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
@@ -156,11 +162,23 @@
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-cli</artifactId>
             <version>${hive.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-common</artifactId>
             <version>${hive.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.parquet</groupId>
@@ -200,6 +218,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hive.hcatalog</groupId>
             <artifactId>hive-hcatalog-core</artifactId>
             <version>${hive.version}</version>
@@ -207,6 +231,14 @@
                 <exclusion>
                     <groupId>com.mapr.hadoop</groupId>
                     <artifactId>maprfs</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-mapreduce-client-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-hdfs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
