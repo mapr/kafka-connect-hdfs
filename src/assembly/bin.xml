@@ -52,6 +52,7 @@
                 <exclude>com.sun.jersey:*</exclude>
                 <exclude>org.eclipse.jetty.aggregate:jetty-all</exclude>
                 <exclude>com.sun.jersey.contribs:jersey-guice</exclude>
+                <exclude>org.apache.hadoop:*</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>
