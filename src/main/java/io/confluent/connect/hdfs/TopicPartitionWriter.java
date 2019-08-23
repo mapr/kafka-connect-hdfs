@@ -493,7 +493,8 @@ public class TopicPartitionWriter {
   }
 
   private String getDirectory(String encodedPartition) {
-    return partitioner.generatePartitionedPath(StreamsUtil.escapeTopic(tp.topic()), encodedPartition);
+    return partitioner.generatePartitionedPath(StreamsUtil.escapeTopic(tp.topic()),
+            encodedPartition);
   }
 
   private void nextState() {

@@ -56,7 +56,8 @@ public class FileUtils {
   ) {
     String topic = topicPart.topic();
     int partition = topicPart.partition();
-    return url + "/" + topicsDir + "/" + StreamsUtil.escapeTopic(topic) + "/" + partition + "/" + name;
+    return url + "/" + topicsDir + "/" + StreamsUtil.escapeTopic(topic)
+            + "/" + partition + "/" + name;
   }
 
   public static String fileName(String url, String topicsDir, String directory, String name) {

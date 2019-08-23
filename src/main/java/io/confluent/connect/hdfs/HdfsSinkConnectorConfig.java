@@ -58,8 +58,10 @@ public class HdfsSinkConnectorConfig extends StorageSinkConnectorConfig {
   // This config is deprecated and will be removed in future releases. Use store.url instead.
   public static final String HDFS_URL_CONFIG = "hdfs.url";
   public static final String HDFS_URL_DOC =
-          "The MapR-FS connection URL. This configuration has the format of maprfs://[mapr/[cluster_name]]/[path] "
-                  + "For connection to the local cluster use maprfs:/// (cluster_name in this case is the first entry "
+          "The MapR-FS connection URL. This configuration has the format of "
+                  + "maprfs://[mapr/[cluster_name]]/[path] "
+                  + "For connection to the local cluster use "
+                  + "maprfs:/// (cluster_name in this case is the first entry "
                   + "in /opt/mapr/conf/mapr-clusters.conf).";
   public static final String HDFS_URL_DEFAULT = null;
   public static final String HDFS_URL_DISPLAY = "HDFS URL";

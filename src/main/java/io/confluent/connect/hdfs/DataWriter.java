@@ -403,7 +403,8 @@ public class DataWriter {
               path
           );
           hive.createTable(hiveDatabase, escapedTableName, latestSchema, partitioner);
-          List<String> partitions = hiveMetaStore.listPartitions(hiveDatabase, escapedTableName, (short) -1);
+          List<String> partitions = hiveMetaStore
+                  .listPartitions(hiveDatabase, escapedTableName, (short) -1);
           FileStatus[] statuses = FileUtils.getDirectories(storage, new Path(topicDir));
           for (FileStatus status : statuses) {
             String location = status.getPath().toString();
@@ -455,7 +456,7 @@ public class DataWriter {
     // make sure we apply the WAL, and only reuse the temp file if the starting offset is still
     // valid. For now, we prefer the simpler solution that may result in a bit of wasted effort.
     for (TopicPartition tp : assignment) {
-        topicPartitionWriters.remove(tp);
+      topicPartitionWriters.remove(tp);
     }
     assignment.removeAll(assignment);
   }

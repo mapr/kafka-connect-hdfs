@@ -40,7 +40,10 @@ public class HdfsSinkTask extends SinkTask {
   private DataWriter hdfsWriter;
   private AvroData avroData;
   Collection<TopicPartition> partitions;
-  public HdfsSinkTask() {}
+
+  public HdfsSinkTask() {
+
+  }
 
   @Override
   public String version() {
@@ -81,7 +84,7 @@ public class HdfsSinkTask extends SinkTask {
       avroData = new AvroData(schemaCacheSize);
       hdfsWriter = new DataWriter(connectorConfig, context, avroData);
       if (partitions != null) {
-          hdfsWriter.open(partitions);
+        hdfsWriter.open(partitions);
       }
       recover(assignment);
       if (hiveIntegration) {
@@ -133,18 +136,17 @@ public class HdfsSinkTask extends SinkTask {
 
   @Override
   public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-      if (hdfsWriter == null){
-          this.partitions = partitions;
-      } else {
-          hdfsWriter.open(partitions);
-      }
-
+    if (hdfsWriter == null) {
+      this.partitions = partitions;
+    } else {
+      hdfsWriter.open(partitions);
+    }
   }
 
   @Override
   public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
     if (hdfsWriter != null) {
-        hdfsWriter.close();
+      hdfsWriter.close();
     }
   }
 
