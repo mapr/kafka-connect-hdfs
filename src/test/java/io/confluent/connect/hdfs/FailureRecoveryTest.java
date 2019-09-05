@@ -125,7 +125,7 @@ public class FailureRecoveryTest extends HdfsSinkConnectorTestBase {
     assertEquals(context.timeout(), (long) connectorConfig.getLong(HdfsSinkConnectorConfig.RETRY_BACKOFF_CONFIG));
 
     Map<String, List<Object>> data = Data.getData();
-    String directory2 = TOPIC + "/" + "partition=" + String.valueOf(PARTITION2);
+    String directory2 = StreamsUtil.escapeTopic(TOPIC) + "/" + "partition=" + String.valueOf(PARTITION2);
     long[] validOffsets = {-1, 2, 5};
     for (int i = 1; i < validOffsets.length; i++) {
       long startOffset = validOffsets[i - 1] + 1;

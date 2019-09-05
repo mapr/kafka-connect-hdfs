@@ -19,6 +19,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.RawLocalFileSystem;
 import org.apache.kafka.common.TopicPartition;
 import org.junit.After;
 import org.junit.Before;
@@ -39,7 +40,8 @@ public class CommittedFileFilterTest {
   public void setUp() throws Exception {
     Configuration conf = new Configuration();
     conf.set("fs.file.impl", "org.apache.hadoop.fs.RawLocalFileSystem");
-    fs = FileSystem.get(conf);
+    fs = new RawLocalFileSystem();
+    fs.setConf(conf);
   }
 
   @After
@@ -56,9 +58,9 @@ public class CommittedFileFilterTest {
     Path oldLog = new Path(ROOT_PATH, "log.1");
     String tempName = UUID.randomUUID().toString() + "_" + "tmp";
     Path tmp = new Path(ROOT_PATH, tempName);
-    Path valid1 = new Path(ROOT_PATH, "topic+1+2+3.abc");
-    Path valid2 = new Path(ROOT_PATH, "topic+1+55+67.def");
-    Path validOtherTopic = new Path(ROOT_PATH, "namespace.topic+1+55+67.def");
+    Path valid1 = new Path(ROOT_PATH, "stream_topic+1+2+3.abc");
+    Path valid2 = new Path(ROOT_PATH, "stream_topic+1+55+67.def");
+    Path validOtherTopic = new Path(ROOT_PATH, "stream_topic2+1+55+67.def");
     Path invalid1 = new Path(ROOT_PATH, "1+2+3");
     Path invalid2 = new Path(ROOT_PATH, "a_b_c_d");
     Path invalid3 = new Path(ROOT_PATH, "tmp");
@@ -79,7 +81,7 @@ public class CommittedFileFilterTest {
     fs.createNewFile(invalid5);
     fs.createNewFile(invalid6);
 
-    TopicPartition tp = new TopicPartition("topic", 1);
+    TopicPartition tp = new TopicPartition("/stream:topic", 1);
     FileStatus[] statuses = fs.listStatus(ROOT_PATH, new TopicPartitionCommittedFileFilter(tp));
     Set<String> files = new HashSet<>();
     for (FileStatus status : statuses) {
@@ -90,7 +92,7 @@ public class CommittedFileFilterTest {
     assertTrue(files.contains(valid1.getName()));
     assertTrue(files.contains(valid2.getName()));
 
-    TopicPartition tp2 = new TopicPartition("namespace.topic", 1);
+    TopicPartition tp2 = new TopicPartition("/stream:topic2", 1);
     FileStatus[] statusesOtherTopic = fs.listStatus(
             ROOT_PATH, new TopicPartitionCommittedFileFilter(tp2));
     assertEquals(1, statusesOtherTopic.length);
