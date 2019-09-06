@@ -14,6 +14,8 @@
 
 package io.confluent.connect.hdfs;
 
+import io.confluent.common.utils.IntegrationTest;
+import io.confluent.connect.hdfs.utils.categories.UnsupportedTest;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
@@ -28,6 +30,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.experimental.categories.Category;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +51,7 @@ import static org.apache.hadoop.hdfs.DFSConfigKeys.DFS_WEB_AUTHENTICATION_KERBER
 import static org.apache.hadoop.hdfs.DFSConfigKeys.IPC_CLIENT_CONNECT_MAX_RETRIES_ON_SASL_KEY;
 import static org.junit.Assert.assertTrue;
 
+@Category({IntegrationTest.class, UnsupportedTest.class})
 public class TestWithSecureMiniDFSCluster extends HdfsSinkConnectorTestBase {
 
   private static File baseDir;

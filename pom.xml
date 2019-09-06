@@ -59,6 +59,12 @@
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
+        <junit.integration.categories>
+            io.confluent.common.utils.IntegrationTest
+        </junit.integration.categories>
+        <junit.unsupported.categories>
+            io.confluent.connect.hdfs.utils.categories.UnsupportedTest
+        </junit.unsupported.categories>
     </properties>
 
     <repositories>
@@ -217,6 +223,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-minicluster</artifactId>
+            <version>${hadoop.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hive.hcatalog</groupId>
             <artifactId>hive-hcatalog-core</artifactId>
             <version>${hive.version}</version>
@@ -333,6 +345,15 @@
                 <configuration>
                     <reuseForks>false</reuseForks>
                     <forkCount>1</forkCount>
+                    <excludedGroups>${junit.integration.categories},${junit.unsupported.categories}</excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <groups>${junit.integration.categories}</groups>
+                    <excludedGroups>${junit.unsupported.categories}</excludedGroups>
                 </configuration>
             </plugin>
             <plugin>

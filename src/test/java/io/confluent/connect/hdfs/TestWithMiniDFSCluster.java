@@ -27,6 +27,7 @@ import org.apache.kafka.connect.data.SchemaProjector;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.junit.After;
+import org.junit.experimental.categories.Category;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -38,14 +39,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import io.confluent.common.utils.IntegrationTest;
 import io.confluent.connect.hdfs.filter.TopicPartitionCommittedFileFilter;
 import io.confluent.connect.hdfs.partitioner.Partitioner;
+import io.confluent.connect.hdfs.utils.categories.UnsupportedTest;
 import io.confluent.connect.storage.common.StorageCommonConfig;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+@Category({IntegrationTest.class, UnsupportedTest.class})
 public class TestWithMiniDFSCluster extends HdfsSinkConnectorTestBase {
 
   protected MiniDFSCluster cluster;
