@@ -65,6 +65,7 @@
         <junit.unsupported.categories>
             io.confluent.connect.hdfs.utils.categories.UnsupportedTest
         </junit.unsupported.categories>
+        <zookeeper.version>3.5.6-mapr-SNAPSHOT</zookeeper.version>
     </properties>
 
     <repositories>
