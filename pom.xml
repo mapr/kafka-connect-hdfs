@@ -56,6 +56,7 @@
         <hive.version>2.3.5.0-mapr-SNAPSHOT</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <hadoop.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.version>
+        <schema.registry.version>5.1.2.0-mapr-SNAPSHOT</schema.registry.version>
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
@@ -128,7 +129,7 @@
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-connect-avro-converter</artifactId>
-            <version>${confluent.version}</version>
+            <version>${schema.registry.version}</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
