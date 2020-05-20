@@ -225,6 +225,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.htrace</groupId>
+            <artifactId>htrace-core4</artifactId>
+            <version>4.2.0-incubating</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
             <version>${hadoop.version}</version>
