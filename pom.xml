@@ -53,7 +53,7 @@
     </scm>
 
     <properties>
-        <hive.version>2.3.5.0-mapr-SNAPSHOT</hive.version>
+        <hive.version>2.3.7-mapr-SNAPSHOT</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <hadoop.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.version>
         <schema.registry.version>5.1.2.0-mapr-SNAPSHOT</schema.registry.version>
