@@ -55,6 +55,7 @@
     <properties>
         <hive.version>2.3.7-mapr-SNAPSHOT</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
+        <kafka.version>2.1.1.0-mapr-SNAPSHOT</kafka.version>
         <hadoop.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.version>
         <schema.registry.version>5.1.2.0-mapr-SNAPSHOT</schema.registry.version>
         <parquet.version>1.8.2</parquet.version>
@@ -69,6 +70,8 @@
         <zookeeper.version>3.5.6-mapr-SNAPSHOT</zookeeper.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <spotbugs.version>3.1.9</spotbugs.version>
+        <htrace.core4.version>4.2.0-incubating</htrace.core4.version>
+        <netty.version>4.1.42.Final</netty.version>
     </properties>
 
     <repositories>
@@ -103,6 +106,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>connect-api</artifactId>
+            <version>${kafka.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -110,17 +114,11 @@
             <artifactId>connect-json</artifactId>
             <version>${kafka.version}</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.kafka</groupId>
-                    <artifactId>kafka-clients</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>2.1.1.0-mapr-SNAPSHOT</version>
+            <version>${kafka.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -229,19 +227,18 @@
         <dependency>
             <groupId>org.apache.htrace</groupId>
             <artifactId>htrace-core4</artifactId>
-            <version>4.2.0-incubating</version>
+            <version>${htrace.core4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
             <version>${hadoop.version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-all</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hive.hcatalog</groupId>
