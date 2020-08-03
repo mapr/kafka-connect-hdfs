@@ -53,6 +53,8 @@
                 <exclude>org.eclipse.jetty.aggregate:jetty-all</exclude>
                 <exclude>com.sun.jersey.contribs:jersey-guice</exclude>
                 <exclude>com.mapr.hadoop:maprfs</exclude>
+                <exclude>log4j:*</exclude>
+                <exclude>org.slf4j:slf4j-api</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>
