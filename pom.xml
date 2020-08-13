@@ -70,7 +70,6 @@
         <zookeeper.version>3.5.6-mapr-SNAPSHOT</zookeeper.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <spotbugs.version>3.1.9</spotbugs.version>
-        <htrace.core4.version>4.2.0-incubating</htrace.core4.version>
         <netty.version>4.1.42.Final</netty.version>
     </properties>
 
@@ -247,11 +246,6 @@
             <artifactId>hadoop-common</artifactId>
             <version>${hadoop.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.htrace</groupId>
-            <artifactId>htrace-core4</artifactId>
-            <version>${htrace.core4.version}</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
