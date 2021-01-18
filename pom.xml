@@ -56,7 +56,7 @@
         <hive.version>2.3.7-mapr-SNAPSHOT</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <kafka.version>2.1.1.0-mapr-SNAPSHOT</kafka.version>
-        <hadoop.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.version>
+        <hadoop.version>2.7.4.0-mapr-700</hadoop.version>
         <schema.registry.version>5.1.2.0-mapr-SNAPSHOT</schema.registry.version>
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>

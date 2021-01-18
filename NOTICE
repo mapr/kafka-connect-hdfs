@@ -240,10 +240,6 @@ The following libraries are included in packaged versions of this project:
  * LICENSE: licenses/LICENSE.cddl+gpl2.html
  * HOMEPAGE: http://jersey.java.net
 
-* Jetty
- * LICENSE: licenses/LICENSE.apache2.txt
- * HOMEPAGE: http://www.eclipse.org/jetty/
-
 * jline
  * COPYRIGHT: Copyright (c) 2002-2006, Marc Prud'hommeaux <mwp1@cornell.edu>
  * LICENSE: licenses/LICENSE.bsd.txt

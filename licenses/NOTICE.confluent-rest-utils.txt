@@ -62,12 +62,6 @@ The following libraries are included in packaged versions of this project:
  * LICENSE: licenses/LICENSE.cddl+gpl2.html
  * HOMEPAGE: http://jersey.java.net
 
-* Jetty
- * COPYRIGHT: Copyright Mort Bay Consulting Pty Ltd unless otherwise noted
- * LICENSE: licenses/LICENSE.apache2.txt, licenses/LICENSE.epl.html
- * NOTICE: licenses/NOTICE.jetty.txt
- * HOMEPAGE: http://eclipse.org/jetty/
-
 * JUnit
  * LICENSE: licenses/LICENSE.epl.txt
  * NOTICE: licenses/NOTICE.junit.txt
