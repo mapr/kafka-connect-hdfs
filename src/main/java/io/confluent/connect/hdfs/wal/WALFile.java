@@ -29,7 +29,6 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.Syncable;
 import org.apache.hadoop.io.DataInputBuffer;
 import org.apache.hadoop.io.DataOutputBuffer;
-import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.VersionMismatchException;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.serializer.Deserializer;
@@ -546,8 +545,14 @@ public class WALFile {
         init(tempReader);
         succeeded = true;
       } finally {
-        if (!succeeded) {
-          IOUtils.cleanup(log, this.in);
+        if (!succeeded && this.in != null) {
+          try {
+            this.in.close();
+          } catch (Throwable e) {
+            if (log != null && log.isDebugEnabled()) {
+              log.debug("Exception in closing " + this.in, e);
+            }
+          }
         }
       }
     }
