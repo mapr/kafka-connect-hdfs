@@ -53,10 +53,10 @@
     </scm>
 
     <properties>
-        <hive.version>2.3.8-mapr-SNAPSHOT</hive.version>
+        <hive.version>2.3.8-mapr-2104</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <kafka.version>2.1.1.200-mapr-710</kafka.version>
-        <hadoop.version>2.7.5.0-mapr-710-SNAPSHOT</hadoop.version>
+        <hadoop.version>2.7.5.0-mapr-710</hadoop.version>
         <schema.registry.version>5.1.2.200-mapr-710</schema.registry.version>
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
