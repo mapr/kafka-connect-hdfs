@@ -35,7 +35,7 @@
     <description>
         A Kafka Connect HDFS connector for copying data between Kafka and Hadoop HDFS.
     </description>
-    <version>5.1.2.0-mapr-SNAPSHOT</version>
+    <version>5.1.2.200-mapr-710</version>
 
     <licenses>
         <license>
@@ -55,9 +55,9 @@
     <properties>
         <hive.version>2.3.8-mapr-SNAPSHOT</hive.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
-        <kafka.version>2.1.1.0-mapr-SNAPSHOT</kafka.version>
+        <kafka.version>2.1.1.200-mapr-710</kafka.version>
         <hadoop.version>2.7.5.0-mapr-710-SNAPSHOT</hadoop.version>
-        <schema.registry.version>5.1.2.0-mapr-SNAPSHOT</schema.registry.version>
+        <schema.registry.version>5.1.2.200-mapr-710</schema.registry.version>
         <parquet.version>1.8.2</parquet.version>
         <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
@@ -67,7 +67,7 @@
         <junit.unsupported.categories>
             io.confluent.connect.hdfs.utils.categories.UnsupportedTest
         </junit.unsupported.categories>
-        <zookeeper.version>3.5.6-mapr-SNAPSHOT</zookeeper.version>
+        <zookeeper.version>3.5.6.0-mapr-2009</zookeeper.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <spotbugs.version>3.1.9</spotbugs.version>
         <netty.version>4.1.42.Final</netty.version>
